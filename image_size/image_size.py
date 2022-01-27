@@ -10,7 +10,7 @@ import cv2
 ## Source:
 #https://www.pyimagesearch.com/2016/03/28/measuring-size-of-objects-in-an-image-with-opencv/
 
-## Extra Sources:
+## Extra Resources:
 # https://github.com/dloperab/PyImageSearch-CV-DL-CrashCourse
 # https://www.thepythoncode.com/article/contour-detection-opencv-python
 
