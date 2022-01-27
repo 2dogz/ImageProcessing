@@ -1,3 +1,7 @@
+# Image Processing
 
-
-python image_size.py --image test2.png --width 0.955
+## How to run
+```bash
+pip install -r requirements.txt
+python image_size.py --image images/example_01.png --width 0.955
+```
