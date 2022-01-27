@@ -12,6 +12,7 @@ import cv2
 
 ## Extra Sources:
 # https://github.com/dloperab/PyImageSearch-CV-DL-CrashCourse
+# https://www.thepythoncode.com/article/contour-detection-opencv-python
 
 def midpoint(ptA, ptB):
 	return ((ptA[0] + ptB[0]) * 0.5, (ptA[1] + ptB[1]) * 0.5)
