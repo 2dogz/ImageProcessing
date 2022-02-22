@@ -3,7 +3,7 @@ name: Basic CI CD Project
 
 on:
   push:
-    branches: [dev]
+    branches: [master]
 
 jobs:
   build:
