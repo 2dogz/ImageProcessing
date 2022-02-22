@@ -31,4 +31,4 @@ def take_pic():
 
     # If captured image is corrupted, moving to else part
     else:
-        print("No image detected. Please! try again")
+        raise Exception("No image detected. Please! try again")

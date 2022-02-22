@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template
+from flask import Flask, redirect, render_template,alert
 from picture_helpers import take_pic
 app = Flask(__name__)
 
@@ -10,7 +10,10 @@ def index():
 
 @app.route('/newPicture')
 def newPicture():
-    take_pic()
+    try:
+        take_pic()
+    except Exception as e:
+        print(e)
     return redirect("/", code=302)
 
 
