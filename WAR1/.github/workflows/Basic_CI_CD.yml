@@ -1,0 +1,35 @@
+---
+name: Basic CI CD Project
+
+on:
+  push:
+    branches: [dev]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pylint pytest yamllint
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Running the code with pylint
+        run: |
+          find . -name '*.py' -exec pylint {} \;
+
+      - name: Running the code with yamllint
+        run: |
+          find . -name '*.yml' -exec yamllint {} \;
+
+      - name: Running the code with pytest
+        run: |
+          find . -name '*.py' -exec pytest {} \;
