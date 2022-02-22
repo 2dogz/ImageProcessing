@@ -1,5 +1,7 @@
 from flask import Flask, redirect, render_template
 from picture_helpers import take_pic
+from chess_test import chessboardPicture
+
 app = Flask(__name__)
 
 
@@ -11,7 +13,8 @@ def index():
 @app.route('/newPicture')
 def newPicture():
     try:
-        take_pic()
+        #take_pic()
+        chessboardPicture()
     except Exception as e:
         print(e)
     return redirect("/", code=302)
