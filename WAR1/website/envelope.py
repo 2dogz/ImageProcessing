@@ -1,7 +1,8 @@
 from flask import Flask, redirect, render_template
 from picture_helpers import take_pic
 from chess_test import chessboardPicture
-
+from find_contours import contoursPicture
+import os
 app = Flask(__name__)
 
 
@@ -14,7 +15,8 @@ def index():
 def newPicture():
     try:
         #take_pic()
-        chessboardPicture()
+        #chessboardPicture()
+        contoursPicture()
     except Exception as e:
         print(e)
     return redirect("/", code=302)
@@ -32,3 +34,9 @@ def contact():
 @app.route('/about')
 def service():
     return render_template('about.html', title='About')
+
+
+@app.route('/photos')
+def photos():
+    photos = os.listdir(os.path.join(app.static_folder, "photos"))
+    return render_template('photos.html', images=photos)
