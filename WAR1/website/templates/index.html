@@ -1,23 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<link rel="stylesheet" href="{{ url_for('static', filename='css/index_style.css') }}" />
-		<script src="{{ url_for('static', filename='js/nav.js') }}"></script>
-		<title>Home</title>
-		<meta charset="utf-8">
-	</head>
-		<body id='main'> 
-			<div id="mySidenav" class="sidenav">
-			  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-				<a href="/">Home</a>
-			  <a href="/about">About</a>
-			  <a href="/client">Clients</a>
-			  <a href="/contact">Contact</a>
-			</div>
-			<!-- Use any element to open the sidenav -->
-			<h2 onclick="openNav()">&#9776;</h2>
+{% extends 'base.html' %}
 
-			<div id='container'>
+{% block content %}
+    <div id="container">
 				<h1>Candid Envelope Readers</h1>
 					<img src="static/xyz.png" alt="Current Image">
 						<form action="/newPicture" method="get">
@@ -25,6 +9,5 @@
 							<button id='newPicture' formaction="/newPicture">Take New Picture</button>
 						</form>
 				</div>
-			</div>
-			</body>
-		</html>
+    </div>
+{% endblock %}
