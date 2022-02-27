@@ -1,4 +1,4 @@
-import cv2
+from cv2 import cv2
 import numpy as np
 
 #TUTORIAL SOURCE : https://docs.opencv.org/4.5.1/dc/dbb/tutorial_py_calibration.html

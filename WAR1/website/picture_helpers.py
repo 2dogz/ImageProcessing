@@ -1,6 +1,6 @@
 # program to capture single image from webcam in python
 # SOURCE : https://www.geeksforgeeks.org/how-to-capture-a-image-from-webcam-in-python/
-import cv2
+from cv2 import cv2
 
 def take_pic():
     # initialize the camera
