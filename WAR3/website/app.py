@@ -3,8 +3,10 @@ from picture_helpers import take_pic
 from chess_test import chessboardPicture
 from find_contours import contoursPicture
 import os
-app = Flask(__name__)
 
+
+app = Flask(__name__)
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route('/')
 def index():
@@ -40,6 +42,16 @@ def service():
 def photos():
     imgs = os.listdir(os.path.join(app.static_folder, "photos"))
     return render_template('photos.html', images=imgs)
+
+# No caching at all for API endpoints.
+@app.after_request
+def add_header(response):
+    # response.cache_control.no_store = True
+    response.headers['Cache-Control'] = 'no-store, no-cache, must-
+    revalidate, post-check=0, pre-check=0, max-age=0'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '-1'
+    return response
 
 
 if __name__ == '__main__':

@@ -34,3 +34,5 @@ COPY cv_install.sh cv_install.sh
 RUN sed -i -e 's/\r$//' cv_install.sh
 RUN chmod +x cv_install.sh
 RUN ./cv_install.sh
+EXPOSE 5000
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0"]
