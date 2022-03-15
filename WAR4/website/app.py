@@ -25,6 +25,29 @@ def newPicture():
         print(e)
     return redirect("/", code=302)
 
+@app.route('/newPictureContours')
+def newPictureContours():
+    try:
+        contoursPicture()
+    except Exception as e:
+        print(e)
+    return redirect("/", code=302)
+
+@app.route('/newPictureChess')
+def newPictureChess():
+    try:
+        chessboardPicture()
+    except Exception as e:
+        print(e)
+    return redirect("/", code=302)
+
+@app.route('/newPictureSize')
+def newPictureSize():
+    try:
+        size_find_v1()
+    except Exception as e:
+        print(e)
+    return redirect("/", code=302)
 
 @app.route('/client')
 def client():
