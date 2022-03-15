@@ -2,6 +2,7 @@ from flask import Flask, redirect, render_template
 from picture_helpers import take_pic
 from chess_test import chessboardPicture
 from find_contours import contoursPicture
+from find_size import *
 import os
 
 
@@ -16,9 +17,10 @@ def index():
 @app.route('/newPicture')
 def newPicture():
     try:
-        #take_pic()
+        take_pic()
         #chessboardPicture()
-        contoursPicture()
+        #contoursPicture()
+        #size_find_v1()
     except Exception as e:
         print(e)
     return redirect("/", code=302)
