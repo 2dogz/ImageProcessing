@@ -19,10 +19,10 @@ def take_pic():
 
         # showing result, it take frame name and image
         # output
-        cv2.imshow("xyz", image)
+        cv2.imshow("xyz1", image)
 
         # saving image in local storage
-        cv2.imwrite("static/xyz.png", image)
+        cv2.imwrite("static/xyz1.png", image)
 
         # If keyboard interrupt occurs, destroy image
         # window
