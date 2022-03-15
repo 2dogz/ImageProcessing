@@ -1,0 +1,7 @@
+version: '2.2.3'
+services:
+    python3-opencv:
+        privileged: true
+        ports:
+            - '5000:5000'
+        image: codebad/python3-opencv
