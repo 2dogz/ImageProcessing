@@ -7,7 +7,7 @@ def chessboardPicture():
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
      #DEFAULT CAMERA PORT
-    cam_port = 0
+    cam_port = -1
 
     # Arrays to store object points and image points from all the images.
     objpoints = [] # 3d point in real world space
