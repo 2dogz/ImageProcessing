@@ -30,10 +30,10 @@ def chessboardPicture():
             imgpoints.append(corners)
             cv2.drawChessboardCorners(image, (9,6), corners2, ret)
             #cv2.imshow('Image Drawn',image)
-            cv2.imwrite("static/xyz.png", image)
+            cv2.imwrite("static/photos/out.png", image)
             #cv2.waitKey(0)
         else:
-            cv2.imwrite("static/xyz.png", image)
+            cv2.imwrite("static/photos/out.png", image)
             #cv2.imshow('Grayscale Corners',gray)
             #cv2.waitKey(0)
         #cv2.destroyWindow("xyz")

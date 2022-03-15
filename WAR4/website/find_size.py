@@ -121,6 +121,8 @@ def size_find_v1():
                     (int(x - 100), int(y + 15)), \
                     cv2.FONT_HERSHEY_PLAIN, 2, \
                     (100, 200, 0), 2)
+                    
+        cv2.imwrite("static/photos/out.png", img)
 
 
 

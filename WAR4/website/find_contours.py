@@ -12,7 +12,7 @@ def contoursPicture():
         for data in contours:
             print("The contours have this data %r" %data)
         cv2.drawContours(image, contours, -1, (0, 255, 0), 3)
-        cv2.imwrite(f"static/photos/xyz1.png", image)
+        cv2.imwrite(f"static/photos/out.png", image)
     # If captured image is corrupted, moving to else part
     else:
         raise Exception("No image detected. Please! try again")

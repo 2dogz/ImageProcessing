@@ -22,7 +22,7 @@ def take_pic():
         cv2.imshow("xyz1", image)
 
         # saving image in local storage
-        cv2.imwrite("static/xyz1.png", image)
+        cv2.imwrite("static/photos/out.png", image)
 
         # If keyboard interrupt occurs, destroy image
         # window
