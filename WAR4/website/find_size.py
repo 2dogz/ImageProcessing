@@ -73,56 +73,63 @@ def size_find_v1():
     aruco_dict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_ARUCO_ORIGINAL)
 
     # read in image
-    img = cv2.imread("images/blue_scan_300.jpg")
+    #img = cv2.imread("images/blue_scan_300.jpg")
+    cam_port = 0
+    cam = cv2.VideoCapture(cam_port)
 
-    # detect aruco square
-    corners, _, _ = cv2.aruco.detectMarkers(img, aruco_dict, parameters=parameters)
+    # reading the input using the camera
+    result, img = cam.read()
+    if result:
+        # detect aruco square
+        corners, _, _ = cv2.aruco.detectMarkers(img, aruco_dict, parameters=parameters)
 
-    # draw polygon around aruco square
-    int_corners = np.int0(corners)
-    cv2.polylines(img, int_corners, True, (0, 255, 0), 5)
+        # draw polygon around aruco square
+        int_corners = np.int0(corners)
+        cv2.polylines(img, int_corners, True, (0, 255, 0), 5)
 
-    # define scale of image
-    aruco_perimeter = cv2.arcLength(corners[0], True)
-    pixel_cm_ratio = aruco_perimeter / 20
+        # define scale of image
+        aruco_perimeter = cv2.arcLength(corners[0], True)
+        pixel_cm_ratio = aruco_perimeter / 20
 
-    # call detect_objects function
-    contours2 = detect_objects(img)
+        # call detect_objects function
+        contours2 = detect_objects(img)
 
-    # draw object boundaries
-    for each in contours2:
-        # create rectangle
-        rect = cv2.minAreaRect(each)
-        (x, y), (w, h), angle = rect
+        # draw object boundaries
+        for each in contours2:
+            # create rectangle
+            rect = cv2.minAreaRect(each)
+            (x, y), (w, h), angle = rect
 
-        # find dimensions in cm
-        object_width = w / pixel_cm_ratio
-        object_height = h / pixel_cm_ratio
+            # find dimensions in cm
+            object_width = w / pixel_cm_ratio
+            object_height = h / pixel_cm_ratio
 
-        # display rect
-        box = cv2.boxPoints(rect)
-        box = np.int0(box)
+            # display rect
+            box = cv2.boxPoints(rect)
+            box = np.int0(box)
 
-        # display center point and lines around rect
-        cv2.circle(img, (int(x), int(y)), 5, (0, 0, 255), -1)
-        cv2.polylines(img, [box], True, (255, 0, 0), 2)
-        height_width = (object_height,object_width)
-        measurements.append(height_width)
+            # display center point and lines around rect
+            cv2.circle(img, (int(x), int(y)), 5, (0, 0, 255), -1)
+            cv2.polylines(img, [box], True, (255, 0, 0), 2)
+            height_width = (object_height,object_width)
+            measurements.append(height_width)
 
-        # display width/height for testing purposes
-        cv2.putText(img, "Width {} cm".format(
-                    round(object_width, 3)), \
-                    (int(x - 100), int(y - 20)), \
-                    cv2.FONT_HERSHEY_PLAIN, \
-                    2, (100, 200, 0), 2)
+            # display width/height for testing purposes
+            cv2.putText(img, "Width {} cm".format(
+                        round(object_width, 3)), \
+                        (int(x - 100), int(y - 20)), \
+                        cv2.FONT_HERSHEY_PLAIN, \
+                        2, (100, 200, 0), 2)
 
-        cv2.putText(img, "Height {} cm".format(
-                    round(object_height, 3)), \
-                    (int(x - 100), int(y + 15)), \
-                    cv2.FONT_HERSHEY_PLAIN, 2, \
-                    (100, 200, 0), 2)
-                    
-        cv2.imwrite("static/photos/out.png", img)
+            cv2.putText(img, "Height {} cm".format(
+                        round(object_height, 3)), \
+                        (int(x - 100), int(y + 15)), \
+                        cv2.FONT_HERSHEY_PLAIN, 2, \
+                        (100, 200, 0), 2)
+
+            cv2.imwrite("static/photos/out.png", img)
+        else:
+            raise Exception('Error Occured - \nfile: find_size \nfunction: size_find_v1()')
 
 
 
