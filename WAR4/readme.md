@@ -1,4 +1,4 @@
-##running via windows
+## running via windows
 ```console
 git clone https://github.com/2dogz/ImageProcessing.git
 py -m venv env
@@ -9,7 +9,7 @@ cd website
 python app.py
 ```
 
-##running via raspberry pi
+## running via raspberry pi
 ```console
 docker pull codebad/python3-opencv
 docker run --rm --privileged -it -p 5000:5000 codebad/python3-opencv # for interactive terminal for local development
