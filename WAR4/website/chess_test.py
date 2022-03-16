@@ -7,7 +7,7 @@ def chessboardPicture():
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
      #DEFAULT CAMERA PORT
-    cam_port = -1
+    cam_port = 0
 
     # Arrays to store object points and image points from all the images.
     objpoints = [] # 3d point in real world space
@@ -18,6 +18,15 @@ def chessboardPicture():
     objp[:,:2] = np.mgrid[0:7,0:6].T.reshape(-1,2)
 
     cam = cv2.VideoCapture(cam_port)
+
+    # set resolution
+    cam.set(3, 1920)
+    cam.set(4, 1080)
+
+    # print resolutions - debug
+    width = cam.get(cv2.CAP_PROP_FRAME_WIDTH)
+    height = cam.get(cv2.CAP_PROP_FRAME_HEIGHT)
+    print(width, height)
 
     # reading the input using the camera
     result, image = cam.read()

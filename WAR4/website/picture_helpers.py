@@ -10,6 +10,15 @@ def take_pic():
     cam_port = 0
     cam = cv2.VideoCapture(cam_port)
 
+    # set resolution
+    cam.set(3, 1920)
+    cam.set(4, 1080)
+
+    # print resolutions - debug
+    width = cam.get(cv2.CAP_PROP_FRAME_WIDTH)
+    height = cam.get(cv2.CAP_PROP_FRAME_HEIGHT)
+    print(width, height)
+
     # reading the input using the camera
     result, image = cam.read()
 
