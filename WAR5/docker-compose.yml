@@ -1,0 +1,12 @@
+version: '3.8'
+services:
+  db:
+    image: mysql:8
+    command: --default-authentication-plugin=caching_sha2_password
+    ports:
+      - "32000:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=S3cret
+      - MYSQL_PASSWORD=An0thrS3crt
+      - MYSQL_USER=kyle
+      - MYSQL_DATABASE=test_db
