@@ -94,6 +94,7 @@ def size_find_v1(path):
     #img = cv2.imread("static/photos/blue_img.jpg")
     result = True
     if result:
+        cv2.imwrite("static/photos/input.png", img)
         # detect aruco square
         corners, _, _ = cv2.aruco.detectMarkers(img, aruco_dict, parameters=parameters)
 

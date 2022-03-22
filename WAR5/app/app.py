@@ -1,13 +1,22 @@
 from flask import Flask, redirect, render_template
+from flask_mysqldb import MySQL
 from cv_files.picture_helpers import take_pic
 from cv_files.chess_test import chessboardPicture
 from cv_files.find_contours import contoursPicture
 from cv_files.find_size import *
 import os
-
+import base64
 
 app = Flask(__name__)
+mysql = MySQL(app)
+
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
+app.config['MYSQL_HOST'] = '127.0.0.1'
+app.config['MYSQL_PORT'] = 32000
+app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_PASSWORD'] = 'S3cret'
+app.config['MYSQL_DB'] = 'test_db'
+
 
 @app.route('/')
 def index():
@@ -18,9 +27,6 @@ def index():
 def newPicture():
     try:
         take_pic()
-        #chessboardPicture()
-        #contoursPicture()
-        #size_find_v1()
     except Exception as e:
         print(e)
     return redirect("/", code=302)
@@ -44,10 +50,30 @@ def newPictureChess():
 @app.route('/newPictureSize')
 def newPictureSize():
     try:
-        size_find_v1("static/photos/blue_img.png")
+        size_find_v1("static/photos/proper_env.png")
     except Exception as e:
         print(e)
     return redirect("/", code=302)
+
+@app.route('/image/<int:id>')
+def image(id):
+    retrieve_query = f"SELECT * FROM Images WHERE ID = {id}"
+    cursor = mysql.connection.cursor()
+    cursor.execute(retrieve_query.format(str(id)))
+    result = cursor.fetchone()
+    image = base64.b64encode(result[2]).decode("utf-8")
+    title = result[1]
+    return render_template('images.html', img_title=title, img_data=image)
+
+@app.route('/images/')
+def images():
+    retrieve_query = "SELECT * FROM Images WHERE ID = 1"
+    cursor = mysql.connection.cursor()
+    cursor.execute(retrieve_query.format(str(1)))
+    result = cursor.fetchone()
+    image = base64.b64encode(result[2]).decode("utf-8")
+    title = result[1]
+    return render_template('images.html', img_title=title, img_data=image)
 
 @app.route('/client')
 def client():

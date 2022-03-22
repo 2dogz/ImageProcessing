@@ -31,6 +31,7 @@ def chessboardPicture():
     # reading the input using the camera
     result, image = cam.read()
     if result:
+        cv2.imwrite("static/photos/input.png", image)
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         ret, corners = cv2.findChessboardCorners(gray, (9,6), None)
         if ret:
@@ -38,15 +39,7 @@ def chessboardPicture():
             corners2 = cv2.cornerSubPix(gray,corners, (11,11), (-1,-1), criteria)
             imgpoints.append(corners)
             cv2.drawChessboardCorners(image, (9,6), corners2, ret)
-            #cv2.imshow('Image Drawn',image)
             cv2.imwrite("static/photos/out.png", image)
-            #cv2.waitKey(0)
-        else:
-            cv2.imwrite("static/photos/out.png", image)
-            #cv2.imshow('Grayscale Corners',gray)
-            #cv2.waitKey(0)
-        #cv2.destroyWindow("xyz")
 
-    # If captured image is corrupted, moving to else part
     else:
         raise Exception("No image detected. Please! try again")
