@@ -34,7 +34,6 @@ RUN chmod +x cv_install.sh
 RUN ./cv_install.sh
 ARG CACHEBUST=1
 RUN git clone https://github.com/2dogz/ImageProcessing.git
-ENTRYPOINT ["bash"]
-#ENTRYPOINT ["python"]
+ENTRYPOINT ["python"]
 WORKDIR "/ImageProcessing/WAR5/app"
-#CMD ["app.py"]
+CMD ["app.py"]
