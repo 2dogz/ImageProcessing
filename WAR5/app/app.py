@@ -6,15 +6,22 @@ from cv_files.find_contours import contoursPicture
 from cv_files.find_size import *
 import os
 import base64
+import psycopg2
 
 app = Flask(__name__)
+# conn = psycopg2.connect(
+#     host="127.0.0.1",
+#     database="test_db",
+#     user="user",
+#     password="password123")
+
 mysql = MySQL(app)
 
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 app.config['MYSQL_HOST'] = '127.0.0.1'
-app.config['MYSQL_PORT'] = 32000
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'S3cret'
+app.config['MYSQL_PORT'] = 3306
+app.config['MYSQL_USER'] = 'kyle'
+app.config['MYSQL_PASSWORD'] = 'An0thrS3crt'
 app.config['MYSQL_DB'] = 'test_db'
 
 
@@ -61,18 +68,22 @@ def image(id):
     cursor = mysql.connection.cursor()
     cursor.execute(retrieve_query.format(str(id)))
     result = cursor.fetchone()
-    image = base64.b64encode(result[2]).decode("utf-8")
+    #image = base64.b64encode(result[2]).decode("utf-8")
+    image = result[2]
     title = result[1]
     return render_template('images.html', img_title=title, img_data=image)
 
-@app.route('/images/')
+@app.route('/images-postgres/')
 def images():
     retrieve_query = "SELECT * FROM Images WHERE ID = 1"
-    cursor = mysql.connection.cursor()
+    cursor = conn.cursor()
+    #cursor = mysql.connection.cursor()
     cursor.execute(retrieve_query.format(str(1)))
     result = cursor.fetchone()
-    image = base64.b64encode(result[2]).decode("utf-8")
-    title = result[1]
+    image = base64.b64encode(result[2])
+    #image = result[0]
+    print(result[2])
+    title = result
     return render_template('images.html', img_title=title, img_data=image)
 
 @app.route('/client')

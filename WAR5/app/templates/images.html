@@ -3,7 +3,7 @@
 {% block content %}
   <div id="container">
     <h3>{{img_title}}</h3>
-    <img id="picture" src="data:image/png;base64,{{ img_data }}" alt="Avatar" style="width:50%; max-
+    <img id="picture" src="data:image/png;base64,{{ img_data.decode() }}" alt="Avatar" style="width:50%; max-
          height: 30vh;">
   </div>
 {% endblock %}

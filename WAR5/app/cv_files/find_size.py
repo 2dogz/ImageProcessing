@@ -90,8 +90,8 @@ def size_find_v1(path):
     #
     # # reading the input using the camera
     # result, img = cam.read()
-    img = cv2.imread(path)
-    #img = cv2.imread("static/photos/blue_img.jpg")
+    #img = cv2.imread(path)
+    img = cv2.imread("env_test.jpg")
     result = True
     if result:
         cv2.imwrite("static/photos/input.png", img)
@@ -155,7 +155,7 @@ def size_find_v1(path):
 #cv2.waitKey(0)
 
 
-
-
-
-print(measurements)
+#
+# size_find_v1("env_test.jpg")
+#
+# print(measurements)

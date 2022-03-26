@@ -1,19 +1,11 @@
 version: '3.8'
 services:
-  python3-opencv:
-        privileged: true
-        links:
-          - db
-        ports:
-            - '5000:5000'
-        image: codebad/python3-opencv-non-it
-  db:
+  mysql:
     image: mysql:8
-    command: --default-authentication-plugin=caching_sha2_password
     ports:
-      - "32000:3306"
+      - 3306:3306
     environment:
+      - MYSQL_DATABASE=test_db
       - MYSQL_ROOT_PASSWORD=S3cret
       - MYSQL_PASSWORD=An0thrS3crt
       - MYSQL_USER=kyle
-      - MYSQL_DATABASE=test_db
