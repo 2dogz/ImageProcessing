@@ -1,6 +1,8 @@
 .idea/*
 basics/*
 
+WAR6/app/static/photos/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
