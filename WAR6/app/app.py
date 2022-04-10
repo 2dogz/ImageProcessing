@@ -18,6 +18,11 @@ DB_NAME = 'user'
 
 conn = psycopg2.connect(host=DB_HOST, database=DB_NAME, user=DB_USER, password=DB_PASSWORD)
 
+# HARD CODED FOR TESTING ON Rpi
+create_query = "CREATE TABLE IF NOT EXISTS Images ( id SERIAL PRIMARY KEY, name VARCHAR(20), photo bytea );"
+cursor.execute(create_query)
+conn.commit()
+
 @app.route('/')
 def index():
     return render_template('index.html', title='Welcome')
