@@ -20,6 +20,8 @@ conn = psycopg2.connect(host=DB_HOST, database=DB_NAME, user=DB_USER, password=D
 
 # HARD CODED FOR TESTING ON Rpi
 create_query = "CREATE TABLE IF NOT EXISTS Images ( id SERIAL PRIMARY KEY, name VARCHAR(20), photo bytea );"
+# create a cursor
+cursor = conn.cursor()
 cursor.execute(create_query)
 conn.commit()
 
