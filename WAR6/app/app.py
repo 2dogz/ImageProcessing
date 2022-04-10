@@ -88,7 +88,7 @@ def images():
     cursor.execute(retrieve_query.format(str(1)))
     result = cursor.fetchone()
     new_binary = bytes(result[2])
-    print(new_binary)
+    #print(new_binary)
     image = new_binary
     title = result[1]
     return render_template('images.html', img_title=title, img_data=image)
