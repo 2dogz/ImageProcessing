@@ -1,11 +1,20 @@
 version: '3.8'
 services:
-    postgres:
+    db:
+        container_name: 'kw-postgres'
         environment:
             - POSTGRES_USER=user
             - POSTGRES_PASSWORD=password123
-        container_name: db-my
-        ports:
-            - '5432:5432'
+        expose:
+            - '5432'
         restart: always
-        image: postgres
+        image: postgres:latest
+    python3-opencv:
+        container_name: 'kw-flask-opencv'
+        restart: always
+        privileged: true
+        ports:
+            - '5000:5000'
+        depends_on:
+            - db
+        image: codebad/python3-opencv
