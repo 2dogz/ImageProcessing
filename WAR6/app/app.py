@@ -11,7 +11,7 @@ import psycopg2
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 1
 
-DB_HOST = '127.0.0.1'
+DB_HOST = 'db'
 DB_USER = 'user'
 DB_PASSWORD = 'password123'
 DB_NAME = 'user'
