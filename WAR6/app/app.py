@@ -25,6 +25,14 @@ cursor = conn.cursor()
 cursor.execute(create_query)
 conn.commit()
 
+def insertBlob(FilePath, name):
+    with open(FilePath, 'rb') as File:
+        BinaryData = base64.b64encode(File.read())
+    insert_query = "INSERT INTO Images (name, photo) VALUES (%s, %s)"
+    cursor.execute(insert_query, (str(name), BinaryData))
+    conn.commit()
+insertBlob("static/proper_env.png", "kw_test")
+
 @app.route('/')
 def index():
     return render_template('index.html', title='Welcome')
