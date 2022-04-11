@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div id="container">
+				<h1>Candid Envelope Readers</h1>
+
+
+        <div id="image_container">
+
+          <div id="left">
+            <h3 id="input">Input Photo</h3>
+            <img id='static' src="static/photos/input.png" alt="static Test Image">
+          </div>
+
+          <div id="right">
+            <h3 id="output">Output</h3>
+					  <img id='live' src="static/photos/out.png" alt="Current Image">
+          </div>
+
+        </div>
+						<form action="/newPicture" method="get">
+							<div id="controlPanel">
+							<button id='newPicture' formaction="/newPicture">New Picture</button>
+              <button id='newPicture' formaction="/newPictureContours">New Contours Picture</button>
+              <button id='newPicture' formaction="/newPictureChess">New Chess Picture</button>
+              <button id='newPicture' formaction="/newPictureSize">New Size Picture</button>
+						</form>
+				</div>
+    </div>
+{% endblock %}
