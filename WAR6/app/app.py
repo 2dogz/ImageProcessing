@@ -31,7 +31,7 @@ def insertBlob(FilePath, name):
     insert_query = "INSERT INTO Images (name, photo) VALUES (%s, %s)"
     cursor.execute(insert_query, (str(name), BinaryData))
     conn.commit()
-insertBlob("static/proper_env.png", "kw_test")
+insertBlob("static/photos/proper_env.png", "kw_test")
 
 @app.route('/')
 def index():

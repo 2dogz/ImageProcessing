@@ -23,7 +23,7 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/*
 
 
-RUN pip install numpy flask
+RUN pip install numpy flask psycopg2
 
 RUN apt-get --fix-missing update && apt-get --fix-broken install
 
